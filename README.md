@@ -12,12 +12,16 @@ Speech-To-Text api
 
 Architecture
 ------------
+
 The system has 3 main components.
+
 * Web frontend
 * Worker daemon and queue
 * Processing servers (festival and cmusphinx)
+
 On the frontend there's a python webapp that implements the REST
 api.
+
 In the middle there's a python celery worker daemon that responds to
 requests from the web frontend, runs jobs on the festival and sphinx
 servers and lets the webfront know when jobs are done.
@@ -34,7 +38,9 @@ own instances on rackspace cloud (or some other hosting service)
 
 Development
 -----------
+
 ### Source Control
+
 If you guys want to help work on this (which I hope you do) Then I'd
 like you each to make a branch called your name. Once you want to add
 some code to the main repo send a pull request (through github) set
@@ -42,16 +48,22 @@ the base branch to dev and the head branch to yours. This way we can
 review everything as it goes in.
 
 ### Running Locally
+
 You need to install a few things to run the whole project locally.
 Festival
 python-virtualenv
 To run simply run
+
     $ fab run_local
 
 ### Pushing to the testing server
+
 I'm using Fabric, to push simply run
+
     $ fab deploy:testing
+
 (If your using the virtialenv environment fabric should be included)
 
 ### Directory Layout
+
 tbd

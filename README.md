@@ -16,28 +16,33 @@ Architecture
 The system has 3 main components.
 
 * Web frontend
-* Worker daemon and queue
+* Celery/rabbitMQ message queue
 * Processing servers (festival and cmusphinx)
 
 On the frontend there's a python webapp that implements the REST
-api.
-
-In the middle there's a python celery worker daemon that responds to
-requests from the web frontend, runs jobs on the festival and sphinx
-servers and lets the webfront know when jobs are done.
-In the back there are web servers built on top of festival and
-cmusphinx that let us use all their functionality via a web api.
+api. This webapp sends messages when it needs some files processed tts
+or stt to the rabbitMQ queue (via celery). Then on the backend
+processing servers run celery worker daemons that listen to the
+rabbitMQ queue and processes jobs. Celery makes all of this trivially easy.
 
 Breaking it out this way lets us scale the parts independantly. If we
-have lots of requests we can scale the web frontend. If there are too
-many jobs to process we can up the celery worker daemons and if there
-are lots and lots of files to process we can add in more instances of
-the festival or cmusphinx servers. These will also all run on their
-own instances on rackspace cloud (or some other hosting service)
-(currently on the beta server all three processes run on one server)
+have lots of requests we can scale the web frontend. If there are lots
+of files to process we can add in more instances of the festival or
+cmusphinx servers. These will also all run on their own instances on
+rackspace cloud (or some other hosting service) (currently on the beta
+server all three processes run on one server)
+
 
 Development
 -----------
+### Environment
+You need to set up virtualenv.
+
+    $ virtualenv --no-site-packages heraldenv
+    $ source heraldenv/bin/activate
+    $ pip install -r requirements.txt
+
+Add whatever library's your code depends on to requierments.txt
 
 ### Source Control
 
@@ -50,11 +55,29 @@ review everything as it goes in.
 ### Running Locally
 
 You need to install a few things to run the whole project locally.
-Festival
-python-virtualenv
+
+* Festival
+* python-virtualenv
+* rabbitmq-server //and to set up rabbitmq
+
+    $ rabbitmqctl add_user herald_user dlareh
+    $ rabbitmqctl add_vhost herald_queue
+    $ rabbitmqctl set_permissions -p herald_queue herald_user "" ".*" ".*"
+
 To run simply run
 
-    $ fab run_local
+    $ fab run_local //not setup yet
+
+Or to start each process individually
+
+* Web
+
+    $ python /src/web/webmain.py
+
+* worker
+
+    $ cd /src/worker
+    $ sudo celeryd --loglevel=INFO
 
 ### Pushing to the testing server
 

@@ -75,12 +75,12 @@ Or to start each process individually
 
 * Web
 
-    $ python /src/web/webmain.py
+        $ python /src/web/webmain.py
 
 * worker
 
-    $ cd /src/
-    $ sudo celeryd --loglevel=INFO
+        $ cd /src/
+        $ sudo celeryd --loglevel=INFO
 
 ### Pushing to the testing server
 

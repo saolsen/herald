@@ -5,10 +5,11 @@ toolkit.
 
 Roadmap
 -------
-Text-To-Speech api
-Python library that uses said api
-Some applications built on the system
-Speech-To-Text api
+
+* Text-To-Speech api
+* Python library that uses said api
+* Some applications built on the system
+* Speech-To-Text api
 
 Architecture
 ------------
@@ -58,7 +59,9 @@ You need to install a few things to run the whole project locally.
 
 * Festival
 * python-virtualenv
-* rabbitmq-server //and to set up rabbitmq
+* rabbitmq-server
+
+To set up rabbitMQ to work with herald
 
     $ rabbitmqctl add_user herald_user dlareh
     $ rabbitmqctl add_vhost herald_queue
@@ -76,7 +79,7 @@ Or to start each process individually
 
 * worker
 
-    $ cd /src/worker
+    $ cd /src/
     $ sudo celeryd --loglevel=INFO
 
 ### Pushing to the testing server

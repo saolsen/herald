@@ -7,4 +7,4 @@ BROKER_VHOST = "herald_queue"
 CELERY_RESULT_BACKEND = "amqp"
 CELERY_AMQP_TASK_RESULT_EXPIRES = 300
 
-CELERY_IMPORTS = ("testing", )
+CELERY_IMPORTS = ("workers.fest.workers", )

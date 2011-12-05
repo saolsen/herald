@@ -93,3 +93,8 @@ I'm using Fabric, to push simply run
 ### Directory Layout
 
 tbd
+
+### Django
+I've decided to use django instead of fest. Mostly because it's got a
+lot built in that I don't want to build. Things like authentication and
+such. Also because django-piston looks really useful here.

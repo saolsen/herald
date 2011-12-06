@@ -14,7 +14,8 @@ from flask import Flask, request, session, url_for, redirect, \
 import mongoengine
 #celery workers
 import sys
-sys.path.append("../")
+sys.path.append('../')
+sys.path.append('./')
 import workers.fest.workers as fest
 #import subprocess
 #from boto.s3.connection import S3Connection

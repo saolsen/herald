@@ -4,7 +4,7 @@
     fest workers
     ~~~~~~~~
 
-    These are the celery workers that interact with the festival server daemon
+    These are helper functions for working with festival
 
     :author: Stephen Olsen
     :copyright: (c) 2011 Herald

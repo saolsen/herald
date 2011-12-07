@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-    fest workers
+    fest helpers
     ~~~~~~~~
 
     These are helper functions for working with festival
